@@ -1,0 +1,21 @@
+.profile__profession {
+    margin: 0;
+    width: 90%;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    font-family: "Inter";
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    }
+
+@media screen and (min-width: 1280px) {
+    .profile__profession {
+        text-align: start;
+        width: 100%;
+        font-size: calc(18/1280*100vw);
+        line-height: calc(22/1280*100vw);
+    }
+}

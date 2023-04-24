@@ -1,0 +1,14 @@
+.profile__edit-button {
+    width: 18px;
+    height: 18px;
+    align-self: center;
+    background: transparent url(../../../images/Vectoredit-button.svg) center center / 7.5px no-repeat;
+    border: 1px solid white;
+}
+
+@media screen and (min-width: 1280px) {
+    .profile__edit-button {
+        width: calc(24/1280*100vw);
+        height: calc(24/1280*100vw);
+    }
+}

@@ -1,0 +1,13 @@
+.place__container-title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: calc(25/282*100%);
+    align-items: center;
+}
+
+@media screen and(min-width: 768px) {
+    .place__container-title {
+        margin-top: 28px;
+    }
+}
