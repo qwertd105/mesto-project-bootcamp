@@ -1,0 +1,9 @@
+.popup__form {
+    width: calc(238/282*100%);
+}
+
+@media screen and (min-width: 1280px) {
+    .popup__form {
+        width: calc(358/430*100%);
+    }
+}
