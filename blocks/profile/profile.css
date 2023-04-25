@@ -9,13 +9,13 @@
 
 @media screen and (min-width: 768px) {
     .profile {
-        width: 665px;
+        max-width: 665px;
     }
 }
 
 @media screen and (min-width: 1280px) {
     .profile {
-        width: calc(880/1280*100%);
+        max-width: 880px;
         flex-direction: row;
         padding-top: 40px;
     }

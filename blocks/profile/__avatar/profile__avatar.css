@@ -2,11 +2,12 @@
     border-radius: 50%;
     width: calc(168.75/282*100%);
     margin-bottom: 22.25px;
+    object-fit: contain;
 }
 
 @media screen and (min-width: 1280px) {
     .profile__avatar {
         margin: 0;
-        width: calc(168.75/1280*100vw);
+        width: 120px;
     }
 }

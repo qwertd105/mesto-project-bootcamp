@@ -10,5 +10,6 @@
     .profile__edit-button {
         width: calc(24/1280*100vw);
         height: calc(24/1280*100vw);
+        background-size: 10px 10px;
     }
 }

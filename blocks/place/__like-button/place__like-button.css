@@ -9,6 +9,11 @@
     border: 0;
 }
 
+.place__like-button:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
 @media screen and (min-width: 768px) {
     .place__like-button {
         width: 52.8px;
@@ -18,7 +23,7 @@
 
 @media screen and (min-width: 1280px) {
     .place__like-button {
-        width: calc(22/1280*100vw);
-        height: calc(19/1280*100vw);
+        width: 22px;
+        height: 19px;
     }
 }

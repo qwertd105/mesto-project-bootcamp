@@ -2,15 +2,15 @@
     width: 100%;
     height: 50px;
     margin-top: 36px;
-    background-color: black;
-    border: 1px solid white;
+    border: 2px solid white;
+    border-radius: 2px;
     background: transparent url(../../../images/Vectoradd-button.svg) center center / 22px no-repeat;
 }
 
 @media screen and (min-width: 1280px) {
     .profile__add-button {
         margin: 0;
-        width: calc(150/1280*100vw);
-        height: calc(50/1280*100vw);
+        width: 150px;
+        background-size: 22px 22px;
     }
 }

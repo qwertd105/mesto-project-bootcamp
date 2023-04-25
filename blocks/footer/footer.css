@@ -9,6 +9,6 @@
     .footer {
         padding-top: 66px;
         padding-bottom: 60px;
-        width: calc(880/1280*100%);
+        max-width: 880px;
     }
 }
