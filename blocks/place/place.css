@@ -7,6 +7,7 @@
     border-radius: calc(10/320*100vw);
     overflow: hidden;
     padding-bottom: calc(31/320*100vw);
+    position: relative;
 }
 
 @media screen and (min-width: 768px) {

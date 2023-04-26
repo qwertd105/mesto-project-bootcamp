@@ -1,4 +1,17 @@
 .place__image {
     width: 100%;
+    height: calc(282/320*100vw);
     object-fit: cover;
+}
+
+@media screen and (min-width: 768px) {
+    .place__image {
+        height: 324px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .place__image {
+        height: 282px;
+    }
 }
