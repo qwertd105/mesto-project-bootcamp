@@ -73,27 +73,27 @@ function editProfile(name, profession) {
 function createPlace(name, link) {
   const place = document.querySelector('#card-template').content.cloneNode(true);
   const image = place.querySelector('.place__image');
-    place.querySelector('.place__title').textContent = name;
-    image.src = link;
-    image.alt = name;
+  place.querySelector('.place__title').textContent = name;
+  image.src = link;
+  image.alt = name;
 
-    const likeButton = place.querySelector('.place__like-button');
-    likeButton.addEventListener('click', function(evt) {
-        evt.target.classList.toggle('place__like-button_active');
-    });
+  const likeButton = place.querySelector('.place__like-button');
+  likeButton.addEventListener('click', function(evt) {
+      evt.target.classList.toggle('place__like-button_active');
+  });
 
-    const trash_button = place.querySelector('.place__trash-button');
-    trash_button.addEventListener('click', function(evt) {
-        evt.target.closest('.place').remove();
-    })
+  const trashButton = place.querySelector('.place__trash-button');
+  trashButton.addEventListener('click', function(evt) {
+      evt.target.closest('.place').remove();
+  })
 
-    image.addEventListener('click', function(evt) {
-        imageViewer.src = link;
-        imageViewer.alt = name;
-        descriptionViewer.textContent = name;
-        openPopup(viewerPopup);
-    });
-    return place;
+  image.addEventListener('click', function(evt) {
+      imageViewer.src = link;
+      imageViewer.alt = name;
+      descriptionViewer.textContent = name;
+      openPopup(viewerPopup);
+  });
+  return place;
 }
 
 function addPlace(name, link) {
