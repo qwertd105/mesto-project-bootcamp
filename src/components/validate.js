@@ -31,7 +31,6 @@ export function hasInvalidInput(inputsList) {
  export function enableValidation(parameters) {
     const formsList = Array.from(document.querySelectorAll(parameters.formSelector));
     formsList.forEach(function(formElement) {
-      console.log(12345);
       formElement.addEventListener('submit', function (evt) {
         evt.preventDefault();
       });
@@ -42,12 +41,12 @@ export function hasInvalidInput(inputsList) {
   
       inputsList.forEach(function(inputElement) {
         inputElement.addEventListener('input', function(evt) {
+          toggleButton(inputsList, buttonElement, parameters.inactiveButtonClass);
           if (!inputElement.validity.valid) {
             showInputError(formElement, inputElement, inputElement.validationMessage, parameters.inputErrorClass, parameters.errorClass);
           } else {
             hideInputError(formElement, inputElement, parameters.inputErrorClass, parameters.errorClass);
           }
-          toggleButton(inputsList, buttonElement, parameters.inactiveButtonClass);
         })
       })
     });

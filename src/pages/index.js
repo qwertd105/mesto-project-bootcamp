@@ -53,7 +53,7 @@ editButton.addEventListener('click', function(evt) {
 setEventListenersForPopups(popupsList);
 
 document.addEventListener('keydown', function(evt) {
-  if (evt.keyCode === 27) {
+  if (evt.key === 'Escape') {
     closeAllPopups(popupsList);
   }
 })
