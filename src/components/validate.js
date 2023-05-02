@@ -5,7 +5,7 @@ export function hasInvalidInput(inputsList) {
   }
   
  export function toggleButton(inputsList, buttonElement, inactiveButtonClass) {
-    if (hasInvalidInput(inputsList)) {
+    if (hasInvalidInput(Array.from(inputsList))) {
       buttonElement.classList.add(inactiveButtonClass);
       buttonElement.disabled = true;
     } else  {

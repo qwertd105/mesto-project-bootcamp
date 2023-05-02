@@ -1,9 +1,21 @@
+export const parameters = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-text-input',
+  submitButtonSelector: '.popup__form-submit-button',
+  inactiveButtonClass: 'button_inactive',
+  inputErrorClass: 'popup__form-text-input_type_error',
+  errorClass: 'popup__form-error_active'
+}
+
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
 
 export const viewerPopup = document.querySelector('.popup_viewer');
 export const profilePopup = document.querySelector('.popup_form_edit');
 export const placePopup = document.querySelector('.popup_form_add');
+
+export const placeInputsList = placePopup.querySelectorAll(parameters.inputSelector);
+export const placeSubmit = placePopup.querySelector(parameters.submitButtonSelector);
 
 export const profileForm = profilePopup.querySelector('.popup__form');
 export const placeForm = placePopup.querySelector('.popup__form');
@@ -53,19 +65,19 @@ export const initialCards = [
     }
   ];
 
-  export const parameters = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__form-text-input',
-    submitButtonSelector: '.popup__form-submit-button',
-    inactiveButtonClass: 'button_inactive',
-    inputErrorClass: 'popup__form-text-input_type_error',
-    errorClass: 'popup__form-error_active'
+export function addEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
   }
+}
 
 export function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', addEscape);
   }
   
  export function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', addEscape);
   }

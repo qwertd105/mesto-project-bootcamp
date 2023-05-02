@@ -1,12 +1,6 @@
-import { closePopup, openPopup } from "./utils";
+import { closePopup } from "./utils";
 
 import { profileName, profileProfession } from "./utils";
-
-export function closeAllPopups(popups) {
-    Array.from(popups).forEach(function(popupElement) {
-      closePopup(popupElement);
-    });
-  }
 
 export function setEventListenersForPopups(popups) {
     Array.from(popups).forEach(function(popupElement) {

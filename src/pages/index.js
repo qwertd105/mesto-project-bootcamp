@@ -7,6 +7,8 @@ import {
   placePopup,
   profileForm,
   placeForm,
+  placeInputsList,
+  placeSubmit,
   closeButtonsList,
   popupsList,
   nameInput,
@@ -16,20 +18,20 @@ import {
   initialCards,
   parameters,
   openPopup,
-  closePopup
+  closePopup,
+  profileName,
+  profileProfession
 } from "../components/utils.js"
 
-import { enableValidation } from '../components/validate';
+import { enableValidation, toggleButton } from '../components/validate';
 
 import { addPlace } from '../components/card';
 
-import { closeAllPopups, setEventListenersForPopups, setEventListenersForCloses } from '../components/modal';
+import { setEventListenersForPopups, setEventListenersForCloses } from '../components/modal';
 
-  initialCards.forEach(function(element) {
-    addPlace(element.name, element.link);
-  })
-
-setEventListenersForCloses(closeButtonsList);
+initialCards.forEach(function(element) {
+  addPlace(element.name, element.link);
+})
 
 profileForm.addEventListener('submit', function(evt) {
     editProfile(nameInput, professionInput);
@@ -43,19 +45,19 @@ placeForm.addEventListener('submit', function(evt) {
 });
 
 addButton.addEventListener('click', function(evt) {
+    toggleButton(placeInputsList, placeSubmit, parameters.inactiveButtonClass);
     openPopup(placePopup);
 });
 
 editButton.addEventListener('click', function(evt) {
+    nameInput.value = profileName.textContent;
+    professionInput.value = profileProfession.textContent;
+    toggleButton(placeInputsList, placeSubmit, parameters.inactiveButtonClass);
     openPopup(profilePopup);
 });
 
-setEventListenersForPopups(popupsList);
+setEventListenersForCloses(closeButtonsList);
 
-document.addEventListener('keydown', function(evt) {
-  if (evt.key === 'Escape') {
-    closeAllPopups(popupsList);
-  }
-})
+setEventListenersForPopups(popupsList);
 
 enableValidation(parameters);
