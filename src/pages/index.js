@@ -27,7 +27,7 @@ import { enableValidation, toggleButton } from '../components/validate';
 
 import { addPlace } from '../components/card';
 
-import { setEventListenersForPopups, setEventListenersForCloses } from '../components/modal';
+import { setEventListenersForPopups, setEventListenersForCloses, editProfile } from '../components/modal';
 
 initialCards.forEach(function(element) {
   addPlace(element.name, element.link);
