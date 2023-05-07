@@ -6,17 +6,20 @@ const config = {
     }
   }
 
+function  getResponseData(res) {
+    if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(res.status);
+} 
+
 export const deleteCard = function(cardId) {
     return fetch(`${config.baseUrl}/cards/${cardId}`, {
         method: "DELETE",
         headers: config.headers
           })
       .then(function(res) {
-        if (res.ok) {
-          return res.json();
-        }
-
-        return Promise.reject(res.status);
+        return getResponseData(res);
       })
 }
 
@@ -26,11 +29,7 @@ export const deleteLike = function(cardId) {
         headers: config.headers
           })
       .then(function(res) {
-        if (res.ok) {
-          return res.json();
-        }
-
-        return Promise.reject(res.status);
+        return getResponseData(res);
       })
 }
 
@@ -40,11 +39,7 @@ export const putLike = function(cardId) {
         headers: config.headers
           })
       .then(function(res) {
-        if (res.ok) {
-          return res.json();
-        }
-
-        return Promise.reject(res.status);
+        return getResponseData(res);
       })
 }
 
@@ -66,11 +61,7 @@ export const getInitialCards = function() {
       headers: config.headers
     })
     .then(function(res) {
-      if (res.ok) {
-        return res.json();
-      }
-  
-      return Promise.reject(res.status);
+      return getResponseData(res);
     })
   }
 
@@ -84,11 +75,7 @@ export const getInitialCards = function() {
       })
     })
     .then(function(res) {
-      if (res.ok) {
-        return res.json();
-      }
-  
-      return Promise.reject(res.status);
+        return getResponseData(res);
     })
   }
 
@@ -102,11 +89,7 @@ export const getInitialCards = function() {
       })
     })
     .then(function(res) {
-      if (res.ok) {
-        return res.json();
-      }
-  
-      return Promise.reject(res.status);
+        return getResponseData(res);
     })
   }
 
@@ -119,15 +102,27 @@ export const patchAvatar = function(link) {
         })
       })
       .then(function(res) {
-        if (res.ok) {
-          return res.json();
-        }
-    
-        return Promise.reject(res.status);
+        return getResponseData(res);
       })
 }
 
-export function loading(buttonElement, start) {
+export function placeLoading(buttonElement, start) {
+    if (start) {
+        buttonElement.value = "Сохранение...";
+    } else {
+        buttonElement.value = "Создать";
+    }
+}
+
+export function profileLoading(buttonElement, start) {
+    if (start) {
+        buttonElement.value = "Сохранение...";
+    } else {
+        buttonElement.value = "Сохранить";
+    }
+}
+
+export function avatarLoading(buttonElement, start) {
     if (start) {
         buttonElement.value = "Сохранение...";
     } else {

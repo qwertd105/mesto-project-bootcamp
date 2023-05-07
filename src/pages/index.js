@@ -37,7 +37,7 @@ import { addPlace } from '../components/card';
 
 import { setEventListenersForPopups, setEventListenersForCloses, editProfile, editAvatar } from '../components/modal';
 
-import { getInitialCards, getUser, patchUser, postCard, patchAvatar, loading } from '../components/api';
+import { getInitialCards, getUser, patchUser, postCard, patchAvatar, placeLoading, profileLoading, avatarLoading } from '../components/api';
 
 // initialCards.forEach(function(element) {
 //   addPlace(element.name, element.link);
@@ -66,35 +66,56 @@ setEventListenersForPopups(popupsList);
 
 enableValidation(parameters);
 
-var me;
-getUser()
-  .then(function(result) {
-    console.log(result.avatar)
-    debugger;
-    profileAvatar.src = result.avatar;
-    me = result;
-  })
-  .catch((err) => {console.log(err)})
 
 
-getInitialCards()
-  .then(function(result) {
-    console.log(result[0]);
+let me;
+
+Promise.all([
+  getUser(),
+  getInitialCards()
+])
+  .then(function([info, initialCards]) {
+    profileAvatar.src = info.avatar;
+    me = info;
     let myCard = false;
-    result.forEach(function(cardElement) {
+    initialCards.forEach(function(cardElement) {
       if (cardElement.owner._id === me._id) {
         myCard = true;
       } else {
         myCard = false;
       }
-//      console.log(cardElement._id)
       addPlace(cardElement.name, cardElement.link, cardElement.likes, myCard, cardElement._id, me._id);
-    })
-  })
-  .catch((err) => {console.log(err)})
+  }) 
+})  
+  .catch((err) => {console.log(err)});
+
+
+// getUser()
+//   .then(function(result) {
+//     profileAvatar.src = result.avatar;
+//     me = result;
+//   })
+//   .catch((err) => {console.log(err)})
+
+
+// getInitialCards()
+//   .then(function(result) {
+//     console.log(result[0]);
+//     let myCard = false;
+//     result.forEach(function(cardElement) {
+//       if (cardElement.owner._id === me._id) {
+//         myCard = true;
+//       } else {
+//         myCard = false;
+//       }
+// //      console.log(cardElement._id)
+//       addPlace(cardElement.name, cardElement.link, cardElement.likes, myCard, cardElement._id, me._id);
+//     })
+//   })
+//   .catch((err) => {console.log(err)})
 
 profileForm.addEventListener('submit', function(evt) {
-  loading(profileSubmit, true);
+  profileLoading(profileSubmit, true);
   patchUser(nameInput.value, professionInput.value)
     .then(function(result) {
 //      console.log(result);
@@ -102,11 +123,11 @@ profileForm.addEventListener('submit', function(evt) {
       closePopup(profilePopup);
     })
     .catch((err) => {console.log(err)})
-    .finally(() => {loading(profileSubmit, false)});
+    .finally(() => {profileLoading(profileSubmit, false)});
 });
 
 placeForm.addEventListener('submit', function(evt) {
-  loading(placeSubmit, true);
+  placeLoading(placeSubmit, true);
   postCard(placeNameInput.value, linkInput.value)
     .then(function(card) {
       console.log(card);
@@ -115,17 +136,18 @@ placeForm.addEventListener('submit', function(evt) {
       evt.target.reset();
     })
     .catch((err) => {console.log(err)})
-    .finally(() => {loading(placeSubmit, false)});
+    .finally(() => {placeLoading(placeSubmit, false)});
 });
 
 avatarForm.addEventListener('submit', function(evt) {
-  loading(avatarSubmit, true);
+  avatarLoading(avatarSubmit, true);
   patchAvatar(profileLinkInput.value)
     .then(function(result) {
       console.log(result);
       editAvatar(result.avatar);
       closePopup(avatarPopup);
+      evt.target.reset();
     })
     .catch((err) => {console.log(err)})
-    .finally(() => {loading(avatarSubmit, false)});
+    .finally(() => {avatarLoading(avatarSubmit, false)});
 })

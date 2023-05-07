@@ -14,7 +14,6 @@ export function createPlace(name, link, likes, myCard, _id, myId) {
     place.querySelector('.place__title').textContent = name;
     image.src = link;
     image.alt = name;
-    console.log(likes);
     
     const likeCounter = place.querySelector('.place__like-counter');
     likeCounter.textContent = likes.length;
@@ -28,18 +27,18 @@ export function createPlace(name, link, likes, myCard, _id, myId) {
     }
 
     likeButton.addEventListener('click', function(evt) {
-        if (Array.from(evt.target.classList).includes("place__like-button_active")) {
+        if (evt.target.classList.contains("place__like-button_active")) {
             deleteLike(_id)
-                .then(function() {
+                .then(function(res) {
                     evt.target.classList.remove('place__like-button_active');
-                    likeCounter.textContent = String(Number(likeCounter.textContent) - 1);
+                    likeCounter.textContent = res.likes.length;
                 })
                 .catch((err) => {console.log(err)})
         } else {
             putLike(_id)
-                .then(function() {
+                .then(function(res) {
                     evt.target.classList.add('place__like-button_active');
-                    likeCounter.textContent = String(Number(likeCounter.textContent) + 1);
+                    likeCounter.textContent = res.likes.length;
                 })
                 .catch((err) => {console.log(err)})
         }
@@ -49,7 +48,6 @@ export function createPlace(name, link, likes, myCard, _id, myId) {
 
     const trashButton = place.querySelector('.place__trash-button');
     trashButton.addEventListener('click', function(evt) {
-        console.log("я нажался")
         const place = evt.target.closest('.place');
         deleteCard(_id)
             .then(function(card) {
