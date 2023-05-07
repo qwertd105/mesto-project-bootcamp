@@ -1,6 +1,6 @@
 import { closePopup } from "./utils";
 
-import { profileName, profileProfession } from "./utils";
+import { profileName, profileProfession, profileAvatar } from "./utils";
 
 export function setEventListenersForPopups(popups) {
     Array.from(popups).forEach(function(popupElement) {
@@ -21,6 +21,10 @@ export function setEventListenersForCloses(closeButtonsList) {
   }
 
 export  function editProfile(name, profession) {
-    profileName.textContent = name.value;
-    profileProfession.textContent = profession.value;
+    profileName.textContent = name;
+    profileProfession.textContent = profession;
+}
+
+export function editAvatar(link) {
+    profileAvatar.src = link;
 }

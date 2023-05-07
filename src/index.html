@@ -16,7 +16,10 @@
         <main>
 
             <section class="profile">
-                <img src="<%=require('./images/imageprofile.jpg')%>" alt="фото аватара" class="profile__avatar">
+                <div class="profile__container-avatar">
+                    <img src="<%=require('./images/imageprofile.jpg')%>" alt="фото аватара" class="profile__avatar">
+                    <div class="profile__avatar-editor"></div>
+                </div>
                 <div class="profile__info">
                     <div class="profile__container-name">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -54,7 +57,7 @@
                         <h2 class="popup__form-title">Новое место</h2>
                         <fieldset class="popup__form-input-container">
                             <input name="place-name" id="place-name-input" placeholder="Название" type="text" class="popup__form-text-input" required minlength="2" maxlength="30">
-                            <span class="popup__form-error place-name-input-error">tanyaaaaaaaaaaaa</span>
+                            <span class="popup__form-error place-name-input-error"></span>
                             <input name="photo" id="photo-input" placeholder="Ссылка на картинку" type="url" class="popup__form-text-input" required>
                             <span class="popup__form-error photo-input-error"></span>
                         </fieldset>
@@ -68,6 +71,20 @@
                 <div class="popup__content">
                     <img src="<%=require('./images/kirill-pershin-1088404-unsplashimage6.jpg')%>" alt="" class="popup__image">
                     <h4 class="popup__description">sdfsdfsdf</h4>
+                    <button type="button" class="button popup__close-button"></button>
+                </div>
+            </div>
+
+            <div class="popup popup_avatar">
+                <div class="popup__container">
+                    <form name="edit-avatar" class="popup__form">
+                        <h2 class="popup__form-title">Обновить аватар</h2>
+                        <fieldset class="popup__form-input-container">
+                            <input name="avatar" id="avatar-input" placeholder="Ссылка на картинку" type="url" class="popup__form-text-input" required>
+                            <span class="popup__form-error avatar-input-error"></span>
+                        </fieldset>
+                        <input name="place-submit" type="submit" value="Создать" class="button popup__form-submit-button">
+                    </form>
                     <button type="button" class="button popup__close-button"></button>
                 </div>
             </div>
@@ -86,7 +103,10 @@
         <img src="" alt="" class="place__image">
         <div class="place__container-title">
             <h2 class="place__title"></h2>
-            <button type="button" class="place__like-button"></button>
+            <div class="place__container-like">
+                <button type="button" class="place__like-button"></button>
+                <h3 class="place__like-counter"></h3>
+            </div>
         </div>
         <button class="button place__trash-button"></button>
     </div>

@@ -6,23 +6,61 @@ import {
     openPopup
 } from "./utils.js"
 
+import { deleteCard, deleteLike, putLike } from "./api.js";
 
-export function createPlace(name, link) {
+export function createPlace(name, link, likes, myCard, _id, myId) {
     const place = document.querySelector('#card-template').content.cloneNode(true);
     const image = place.querySelector('.place__image');
     place.querySelector('.place__title').textContent = name;
     image.src = link;
     image.alt = name;
-  
+    console.log(likes);
+    
+    const likeCounter = place.querySelector('.place__like-counter');
+    likeCounter.textContent = likes.length;
+
     const likeButton = place.querySelector('.place__like-button');
+    if (likes.some(function(element) {
+        return element._id === myId; 
+    }))
+    {
+        likeButton.classList.add("place__like-button_active");
+    }
+
     likeButton.addEventListener('click', function(evt) {
-        evt.target.classList.toggle('place__like-button_active');
+        if (Array.from(evt.target.classList).includes("place__like-button_active")) {
+            deleteLike(_id)
+                .then(function() {
+                    evt.target.classList.remove('place__like-button_active');
+                    likeCounter.textContent = String(Number(likeCounter.textContent) - 1);
+                })
+                .catch((err) => {console.log(err)})
+        } else {
+            putLike(_id)
+                .then(function() {
+                    evt.target.classList.add('place__like-button_active');
+                    likeCounter.textContent = String(Number(likeCounter.textContent) + 1);
+                })
+                .catch((err) => {console.log(err)})
+        }
     });
-  
+    
+    
+
     const trashButton = place.querySelector('.place__trash-button');
     trashButton.addEventListener('click', function(evt) {
-        evt.target.closest('.place').remove();
+        console.log("я нажался")
+        const place = evt.target.closest('.place');
+        deleteCard(_id)
+            .then(function(card) {
+                place.remove();
+            })
+            .catch((err) => {console.log(err)})
     })
+
+    if (!myCard) {
+        trashButton.remove();
+    }
   
     image.addEventListener('click', function(evt) {
         imageViewer.src = link;
@@ -33,7 +71,7 @@ export function createPlace(name, link) {
     return place;
   }
 
-export function addPlace(name, link) {
-    const place = createPlace(name, link);
+export function addPlace(name, link, likes, myCard, _id, myId) {
+    const place = createPlace(name, link, likes, myCard, _id, myId);
     places.prepend(place);
 }

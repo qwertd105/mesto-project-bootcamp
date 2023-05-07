@@ -1,0 +1,19 @@
+.place__like-counter {
+    margin: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 28px;
+    text-align: center;
+
+    color: #000000;
+}
+
+
+@media screen and (min-width: 1280px) {
+    .place__like-counter {
+        font-size: 13px;
+        line-height: 16px;
+    }
+}
